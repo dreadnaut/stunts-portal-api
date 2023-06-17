@@ -18,6 +18,36 @@ should include the following request headers:
 
 ## Available endpoints
 
+### List competitions
+
+```
+GET /api/competitions
+```
+Returns a list of competition records. By default, the response will only
+include active competitions. Use the `status` query parameter to apply a
+different filter, for example `/api/competitions?status=inactive`.
+
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| `status`  | String | (Optional) One of `active`, `inactive`, or `all`. If not specified, the endpoint will return only `active` competitions |
+
+Each competition follows this structure:
+
+| Field                 | Type     | Description                                          |
+| --------------------- | -------- | ---------------------------------------------------- |
+| `name`                | String   | The name of the competition |
+| `status`              | String   | `active` if the competition is running this year, otherwise `inactive` |
+| `competition_id`      | String   | (Optional) A short string identifying the competition with the API |
+| `url`                 | URL      | The web page of the competition, if available. Otherwise, a replacement page with information about the competition |
+| `banner_url`          | URL      | The address of the competition banner image hosted by the portal |
+| `managed_by`          | String   | Person or people managing the competition |
+| `competition_cadence` | String   | Duration or frequence of a 'season' of the competition |
+| `event_duration`      | String   | Duration or frequence of an event of the competition |
+| `replay_handling`     | String   | The competition's policy on the use of [Replay Handling](https://wiki.stunts.hu/wiki/Replay_Handling) |
+| `shortcuts`           | String   | The competition's policy on the use of shortcuts on competition tracks |
+| `cars`                | String   | The car or cars in use in the competition |
+| `description`         | String   | A brief description of the competition |
+
 ### List current events
 
 ```
